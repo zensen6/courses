@@ -25,7 +25,6 @@ public class CourseService implements CourseServiceInterface {
         return courseRepository.findAll();
     }
 
-
     @Override
     public Optional<Course> findById(int id){
         Optional<Course> course = courseRepository.findById(id);
@@ -45,6 +44,12 @@ public class CourseService implements CourseServiceInterface {
         if(c.isPresent()){
             courseRepository.deleteById(id);
         }
+        return;
+    }
+
+    @Override
+    public void updateCourse(Course course){
+        courseRepository.update(course);
         return;
     }
 

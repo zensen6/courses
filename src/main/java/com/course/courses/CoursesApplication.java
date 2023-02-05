@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @SpringBootApplication
 public class CoursesApplication {
@@ -15,7 +16,12 @@ public class CoursesApplication {
 		SpringApplication.run(CoursesApplication.class, args);
 	}
 
+	@Bean
+	public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
+		return new HiddenHttpMethodFilter();
+	}
 
+	/*
 	@Bean
 	CommandLineRunner loadData(CourseRepositoryInterface courseRepository){
 		return (args) -> {
@@ -31,6 +37,8 @@ public class CoursesApplication {
 		};
 
 	}
+	*/
+
 
 
 

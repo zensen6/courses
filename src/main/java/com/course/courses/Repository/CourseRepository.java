@@ -57,6 +57,21 @@ public class CourseRepository implements CourseRepositoryInterface{
         boolean isCourseNotExist = jdbcTemplate.query(search, (rs,rowNum)->0, id).isEmpty();
         if(!isCourseNotExist){
             jdbcTemplate.update(sql, id);
+        }else{
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @Override
+    @Transactional
+    public void update(Course course){
+        Optional<Course> res = this.findById(course.getId());
+        if(res.isEmpty()){
+            throw new IllegalArgumentException();
+        }else{
+            String sql = "UPDATE course SET name = ?, author = ? WHERE ID = ?";
+            Course course1 = res.get();
+            jdbcTemplate.update(sql,  course.getName(), course.getAuthor(), course.getId());
         }
     }
 

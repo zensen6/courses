@@ -14,4 +14,6 @@ public interface CourseRepositoryInterface {
     Optional<Course> findById(int id);
     void deleteById(int id);
 
+    void update(Course course);
+
 }
