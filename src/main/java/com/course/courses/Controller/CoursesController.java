@@ -36,7 +36,7 @@ public class CoursesController {
 
     //@GetMapping("/delete") 됨
     @DeleteMapping("/delete")
-    public ResponseEntity<Object> Delete(@RequestParam int id) throws URISyntaxException {
+    public ResponseEntity<Object> Delete(@RequestParam Long id) throws URISyntaxException {
         System.out.println("delete");
         courseService.deleteCourse(id);
         URI redirectUri = new URI("http://localhost:3000");

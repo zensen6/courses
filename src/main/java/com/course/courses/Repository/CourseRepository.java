@@ -38,7 +38,7 @@ public class CourseRepository implements CourseRepositoryInterface{
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Course> findById(int id) {
+    public Optional<Course> findById(Long id) {
         String sql = "SELECT * FROM course WHERE ID = ?";
         boolean isCourseNotExist = jdbcTemplate.query(sql,(rs,rowNum)->0,id).isEmpty();
         if(isCourseNotExist){
@@ -51,7 +51,7 @@ public class CourseRepository implements CourseRepositoryInterface{
 
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
         String sql = "DELETE FROM course WHERE ID = ?";
         String search = "SELECT * FROM course WHERE ID = ?";
         boolean isCourseNotExist = jdbcTemplate.query(search, (rs,rowNum)->0, id).isEmpty();
@@ -78,7 +78,7 @@ public class CourseRepository implements CourseRepositoryInterface{
 
     private RowMapper<Course> ROW_MAPPER() {
         return (rs, rowNum)->{
-            int ID = rs.getInt("ID");
+            Long ID = rs.getLong("ID");
             String name = rs.getString("name");
             String author = rs.getString("author");
             return new Course(ID,name,author);

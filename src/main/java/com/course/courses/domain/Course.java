@@ -18,7 +18,18 @@ import javax.persistence.Id;
 public class Course {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
     private String author;
+
+    public void updateName(String name){
+        this.name = name;
+        return;
+    }
+
+    public void updateAuthor(String author){
+        this.author = author;
+        return;
+    }
+
 }

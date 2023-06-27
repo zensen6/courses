@@ -1,32 +1,29 @@
 package com.course.courses.Service;
 
-import com.course.courses.Repository.CourseRepositoryInterface;
+
+import com.course.courses.Repository.CourseRepositoryInterfaceV1;
 import com.course.courses.domain.Course;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
 @Service
+@Primary
 @RequiredArgsConstructor
-public class CourseService implements CourseServiceInterface {
+public class CourseServiceV1 implements CourseServiceInterface{
 
-    private final CourseRepositoryInterface courseRepository;
+    @Autowired
+    private final CourseRepositoryInterfaceV1 courseRepository;
 
     @Override
     public List<Course> findAll(){
-        return courseRepository.findAll()
-                .stream()
-                .map(c-> new Course(c.getId(), c.getName(), c.getAuthor()))
-                .collect(Collectors.toList());
+        return courseRepository.findAll().stream()
+                .map(c -> new Course(c.getId(),c.getName(), c.getAuthor())).collect(Collectors.toList());
     }
 
     @Override
@@ -45,17 +42,28 @@ public class CourseService implements CourseServiceInterface {
 
     @Override
     public void deleteCourse(Long id){
-        Optional<Course> c = courseRepository.findById(id);
-        if(c.isPresent()){
-            courseRepository.deleteById(id);
-        }
+
+        courseRepository.deleteById(id);
         return;
     }
 
+
     @Override
     public void updateCourse(Course course){
-        courseRepository.update(course);
-        return;
+        //courseRepository.update(course);
+
+        Course c = courseRepository.findById(course.getId())
+                .orElseThrow(IllegalArgumentException::new);
+        String newName = course.getName();
+        String newAuthor = course.getAuthor();
+        c.updateAuthor(newAuthor);
+        c.updateName(newName);
+        courseRepository.save(c);
     }
+
+
+
+
+
 
 }

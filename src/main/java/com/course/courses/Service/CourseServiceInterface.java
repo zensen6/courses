@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CourseServiceInterface {
-    Optional<Course> findById(int id);
+    Course findById(Long id);
     List<Course> findAll();
     Course createCourse(Course course);
-    void deleteCourse(int id);
+    void deleteCourse(Long id);
 
     void updateCourse(Course course);
 

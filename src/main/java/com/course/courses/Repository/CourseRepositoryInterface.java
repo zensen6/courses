@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface CourseRepositoryInterface {
     void save(Course course);
     List<Course> findAll();
-    Optional<Course> findById(int id);
-    void deleteById(int id);
+    Optional<Course> findById(Long id);
+    void deleteById(Long id);
 
     void update(Course course);
 
