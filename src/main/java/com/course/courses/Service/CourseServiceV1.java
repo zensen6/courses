@@ -28,9 +28,8 @@ public class CourseServiceV1 implements CourseServiceInterface{
 
     @Override
     public Course findById(Long id){
-        Course course = courseRepository.findById(id)
+        return courseRepository.findById(id)
                 .orElseThrow(IllegalArgumentException::new);
-        return course;
     }
 
 
@@ -52,13 +51,13 @@ public class CourseServiceV1 implements CourseServiceInterface{
     public void updateCourse(Course course){
         //courseRepository.update(course);
 
-        Course c = courseRepository.findById(course.getId())
+        Course _course = courseRepository.findById(course.getId())
                 .orElseThrow(IllegalArgumentException::new);
         String newName = course.getName();
         String newAuthor = course.getAuthor();
-        c.updateAuthor(newAuthor);
-        c.updateName(newName);
-        courseRepository.save(c);
+        _course.updateAuthor(newAuthor);
+        _course.updateName(newName);
+        courseRepository.save(_course);
     }
 
 
