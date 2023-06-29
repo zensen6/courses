@@ -1,6 +1,7 @@
 package com.course.courses.Controller;
 import com.course.courses.Service.CourseServiceInterface;
 import com.course.courses.domain.Course;
+import com.course.courses.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -29,6 +30,12 @@ public class CoursesController {
         return new ResponseEntity<>(course, HttpStatus.CREATED);
     }
 
+    @GetMapping("/user")
+    public ResponseEntity<User> getUser(User user){
+
+    }
+
+
     @GetMapping("/showCourses")
     public List<Course> getAll() {
         return courseService.findAll();
@@ -55,5 +62,8 @@ public class CoursesController {
         httpHeaders.setLocation(redirectUri);
         return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
     }
+
+
+
 
 }
