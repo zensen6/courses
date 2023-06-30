@@ -1,5 +1,7 @@
 package com.course.courses.Controller;
+import com.course.courses.DTO.UserRequest;
 import com.course.courses.Service.CourseServiceInterface;
+import com.course.courses.Service.UserServiceInterface;
 import com.course.courses.domain.Course;
 import com.course.courses.domain.User;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,8 @@ public class CoursesController {
 
     @Autowired //해줘야함 이유는 모르겠음..
     private CourseServiceInterface courseService;
+    @Autowired
+    private UserServiceInterface userService;
 
     @GetMapping("/")
     public ResponseEntity<Course> main(Course course){
@@ -30,9 +34,10 @@ public class CoursesController {
         return new ResponseEntity<>(course, HttpStatus.CREATED);
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<User> getUser(User user){
-
+    @PostMapping("/user")
+    public ResponseEntity<UserRequest> getUser(@RequestBody UserRequest userRequest){
+        userService.createUser(userRequest);
+        return new ResponseEntity<>(userRequest, HttpStatus.CREATED);
     }
 
 

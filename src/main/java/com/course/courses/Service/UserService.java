@@ -18,7 +18,7 @@ public class UserService implements UserServiceInterface{
     @Autowired
     private final UserRepositoryInterface userRepository;
 
-    @Transactional
+    //@Transactional
     public void createUser(UserRequest userRequest){
         userRepository.save(new User(userRequest.getName(), userRequest.getEmail()));
         return;

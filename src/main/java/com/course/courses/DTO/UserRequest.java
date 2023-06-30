@@ -2,9 +2,13 @@ package com.course.courses.DTO;
 
 public class UserRequest {
 
-    String name;
-    String email;
+    private final String name;
+    private final String email;
 
+    public UserRequest(String name, String email){
+        this.name = name;
+        this.email = email;
+    }
     public String getName() {
         return name;
     }
