@@ -6,6 +6,9 @@ import com.course.courses.domain.User;
 public interface UserServiceInterface {
 
     User findById(Long id);
+
+    User findByNameAndEmail(User user);
+
     void createUser(UserRequest userRequest);
     void deleteUser(Long id);
 

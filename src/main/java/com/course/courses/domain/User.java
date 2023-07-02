@@ -2,6 +2,7 @@ package com.course.courses.domain;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @AllArgsConstructor
+@Data
 public class User {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +46,5 @@ public class User {
         public Long getId(){
                 return this.id;
         }
-
 
 }

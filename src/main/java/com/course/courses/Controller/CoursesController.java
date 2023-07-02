@@ -28,7 +28,12 @@ public class CoursesController {
     @Autowired
     private UserServiceInterface userService;
 
+    /*
     @GetMapping("/")
+    public Respo
+    */
+
+    @GetMapping("/course")
     public ResponseEntity<Course> main(Course course){
         courseService.createCourse(course);
         return new ResponseEntity<>(course, HttpStatus.CREATED);

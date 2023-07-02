@@ -1,9 +1,16 @@
 package com.course.courses.domain;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
+@Data
+@Table(name = "enroll_history")
 public class Enroll_history {
 
     @Id
@@ -21,6 +28,8 @@ public class Enroll_history {
         this.user = user;
     }
 
-
+    public String getEmail(){
+        return this.user.getEmail();
+    }
 
 }
