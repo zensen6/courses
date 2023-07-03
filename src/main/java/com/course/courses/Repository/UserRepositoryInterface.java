@@ -4,5 +4,5 @@ import com.course.courses.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepositoryInterface extends JpaRepository<User,Long> {
-
+    User findByNameAndEmail(String Name, String Email);
 }
