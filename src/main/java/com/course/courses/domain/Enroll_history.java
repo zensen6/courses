@@ -17,19 +17,35 @@ public class Enroll_history {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column
+    private String coursename;
+
+    @Column
+    private String courseauthor;
+
     @ManyToOne
     private User user;
 
     protected Enroll_history() {}
 
-    public Enroll_history(String name, User user){
-        this.name = name;
-        this.user = user;
+    public Enroll_history(String coursename, String courseauthor, User user){
+        this.coursename = coursename;
+        this.courseauthor = courseauthor;
     }
 
+
+    public String getName(){
+        return this.user.getName();
+    }
     public String getEmail(){
         return this.user.getEmail();
     }
 
+    public String getCourseName(){
+        return this.coursename;
+    }
+
+    public String getCourseAuthor(){
+        return this.getCourseAuthor();
+    }
 }
