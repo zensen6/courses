@@ -1,8 +1,10 @@
 package com.course.courses.Controller;
 import com.course.courses.DTO.UserRequest;
 import com.course.courses.Service.CourseServiceInterface;
+import com.course.courses.Service.HistoryServiceInterface;
 import com.course.courses.Service.UserServiceInterface;
 import com.course.courses.domain.Course;
+import com.course.courses.domain.Enroll_history;
 import com.course.courses.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +30,16 @@ public class CoursesController {
     @Autowired
     private UserServiceInterface userService;
 
-    /*
-    @GetMapping("/")
-    public Respo
-    */
+    @Autowired
+    private HistoryServiceInterface historyService;
+
+
+    @GetMapping("/history")
+    public ResponseEntity<Enroll_history> enrollhistory(Enroll_history history){
+        historyService.createHistory(history);
+        return new ResponseEntity<>(history, HttpStatus.CREATED);
+    }
+
 
     @GetMapping("/course")
     public ResponseEntity<Course> main(Course course){

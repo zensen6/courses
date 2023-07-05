@@ -33,17 +33,13 @@ public class HistoryService implements HistoryServiceInterface{
         String email = history.getEmail();
 
         String coursename = history.getCourseName();
-        String courseauthor = history.getCourseAuthor();
         User user = userRepository.findByNameAndEmail(name, email);
-        Course course = courseRepository.findByNameAndAuthor(coursename, courseauthor);
+        Course course = courseRepository.findByName(coursename);
         if(user != null && course != null){
-            historyRepository.save(new Enroll_history(coursename, courseauthor, user));
+            historyRepository.save(new Enroll_history(coursename, user));
         }else{
             throw new IllegalArgumentException("user or course does not exists!");
         }
-
-
-        historyRepository.save(history);
         return;
     }
 

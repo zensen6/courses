@@ -20,17 +20,14 @@ public class Enroll_history {
     @Column
     private String coursename;
 
-    @Column
-    private String courseauthor;
-
     @ManyToOne
     private User user;
 
     protected Enroll_history() {}
 
-    public Enroll_history(String coursename, String courseauthor, User user){
+    public Enroll_history(String coursename, User user){
         this.coursename = coursename;
-        this.courseauthor = courseauthor;
+        this.user = user;
     }
 
 
@@ -45,7 +42,4 @@ public class Enroll_history {
         return this.coursename;
     }
 
-    public String getCourseAuthor(){
-        return this.getCourseAuthor();
-    }
 }
