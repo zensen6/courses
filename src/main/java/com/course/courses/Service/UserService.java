@@ -40,5 +40,15 @@ public class UserService implements UserServiceInterface{
     }
 
 
+    public User findByNameAndEmail(UserRequest userRequest){
+        User user = userRepository.findByNameAndEmail(userRequest.getName(), userRequest.getEmail());
+        if(user == null){
+            throw new IllegalArgumentException("user or email does not exists");
+        }
+        return user;
+    }
+
+
+
 
 }

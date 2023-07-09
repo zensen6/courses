@@ -7,7 +7,7 @@ public interface UserServiceInterface {
 
     User findById(Long id);
 
-    User findByNameAndEmail(User user);
+    User findByNameAndEmail(UserRequest userRequest);
 
     void createUser(UserRequest userRequest);
     void deleteUser(Long id);
