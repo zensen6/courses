@@ -1,12 +1,10 @@
 package com.course.courses.DTO;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @AllArgsConstructor
-@Data
+@Getter
 @NoArgsConstructor
 public class HistoryRequest {
     private String username;

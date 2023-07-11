@@ -1,6 +1,7 @@
 package com.course.courses.Service;
 
 
+import com.course.courses.DTO.HistoryRequest;
 import com.course.courses.Repository.CourseRepository;
 import com.course.courses.Repository.CourseRepositoryInterfaceV1;
 import com.course.courses.Repository.HistoryRepository;
@@ -28,14 +29,19 @@ public class HistoryService implements HistoryServiceInterface{
 
 
     @Transactional
-    public void createHistory(Enroll_history history){
-        String name = history.getName();
+    public void createHistory(HistoryRequest history){
+        String name = history.getUsername();
         String email = history.getEmail();
+        String coursename = history.getCoursename();
 
-        String coursename = history.getCourseName();
+        System.out.println(coursename + " service level email");
+
         User user = userRepository.findByNameAndEmail(name, email);
         Course course = courseRepository.findByName(coursename);
         if(user != null && course != null){
+
+            System.out.println(course.getName() + " servie level username");
+
             historyRepository.save(new Enroll_history(coursename, user));
         }else{
             throw new IllegalArgumentException("user or course does not exists!");

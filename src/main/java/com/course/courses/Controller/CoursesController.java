@@ -1,4 +1,5 @@
 package com.course.courses.Controller;
+import com.course.courses.DTO.HistoryRequest;
 import com.course.courses.DTO.UserRequest;
 import com.course.courses.Service.CourseServiceInterface;
 import com.course.courses.Service.HistoryServiceInterface;
@@ -34,15 +35,16 @@ public class CoursesController {
     private HistoryServiceInterface historyService;
 
 
-    @GetMapping("/history")
-    public ResponseEntity<Enroll_history> enrollhistory(Enroll_history history){
+    @PostMapping("/history")
+    public ResponseEntity<HistoryRequest> enrollhistory(@RequestBody HistoryRequest history){
+        System.out.println(history.getCourseauthor()+ "controller level");
         historyService.createHistory(history);
         return new ResponseEntity<>(history, HttpStatus.CREATED);
     }
 
 
-    @GetMapping("/course")
-    public ResponseEntity<Course> main(Course course){
+    @PostMapping("/course")
+    public ResponseEntity<Course> main(@RequestBody Course course){
         courseService.createCourse(course);
         return new ResponseEntity<>(course, HttpStatus.CREATED);
     }
