@@ -84,6 +84,17 @@ public class CoursesController {
     }
 
 
+    @DeleteMapping("/user/delete")
+    public ResponseEntity<?> DeleteUser(@RequestParam Long id) throws URISyntaxException{
+        // should validate later
+
+        userService.deleteUser(id);
+        URI redirectUri = new URI("http://localhost:3000");
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(redirectUri);
+        return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+    }
+
 
 
 }
